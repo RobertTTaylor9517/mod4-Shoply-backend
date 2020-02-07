@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-    before_action :authenticate_request
+    skip_before_action :authenticate_request, only: [:index, :show]
 
     def index
         products = Product.all 
@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
             render json: product
         else
             render json: {error: 'Product did not save'}
+        end
     end
 
     def show

@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   post 'authenticate', to: 'authentication#authenticate'
   get 'products', to: "products#index"
   post '/users/new', to: 'users#create'
+  get '/products', to: 'products#index'
+  get '/products/:id', to: 'products#show'
 end
