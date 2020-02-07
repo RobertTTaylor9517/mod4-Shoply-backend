@@ -12,7 +12,6 @@ class UsersController < ApplicationController
 private
 
     def user_params
-        puts(params)
         params.require(:user).permit(:username, :password, :wallet)
     end
 
