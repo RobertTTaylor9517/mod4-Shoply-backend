@@ -14,7 +14,7 @@ private
     attr_accessor :username, :password
 
     def user
-        user = User.find_by_username(username)
+        user = User.find_by(username: username)
         return user if user && user.authenticate(password)
 
         errors.add :user_authentication, 'Wrong username or password'
