@@ -2,7 +2,6 @@ class ProductsController < ApplicationController
     skip_before_action :authenticate_request, only: [:index, :show, :category]
 
     def index
-        byebug
         products = Product.all 
         render json: products
     end
