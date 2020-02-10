@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   post '/users/new', to: 'users#create'
   get '/products', to: 'products#index'
   get '/products/:id', to: 'products#show'
+  get '/catergory', to: 'products#category'
 end

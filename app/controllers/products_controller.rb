@@ -31,6 +31,11 @@ class ProductsController < ApplicationController
         end
     end
 
+    def category
+        products = Product.find_all_by(category: params[:category])
+        render json: products
+    end
+
 private
 
     def product_params
