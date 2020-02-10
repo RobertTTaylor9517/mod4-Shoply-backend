@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
-    skip_before_action :authenticate_request, only: [:index, :show]
+    skip_before_action :authenticate_request, only: [:index, :show, :category]
 
     def index
+        byebug
         products = Product.all 
         render json: products
     end
@@ -32,7 +33,12 @@ class ProductsController < ApplicationController
     end
 
     def category
-        products = Product.find_all_by(category: params[:category])
+        products = []
+        if params[:category] === 'all'
+            products = Product.all
+        else
+            products = Product.where(category: params[:category])
+        end
         render json: products
     end
 

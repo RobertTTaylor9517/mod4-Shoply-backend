@@ -10,6 +10,11 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        user_id = JsonWebToken.decode(params[:key])
+        puts(user_id)
+    end
+
 private
 
     def user_params
