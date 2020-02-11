@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-    skip_before_action :authenticate_request
+    skip_before_action :authenticate_request, only: [:index]
     def index
         reviews = Review.where(product_id: params[:product_id])
         render json: reviews.to_json(include: {
@@ -10,10 +10,9 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        user_auth = JsonWebToken.decode(params[:key])
-        user_id = user_auth["user_id"]
 
-        review = Review.new(comment: params[:comment], rating: params[:rating], product_id: params[:product_id], user_id: user_id)
+        review = Review.new(review_params)
+        review['user_id'] = current_user.id
 
         if review.save!
             render json: review.to_json(include: {
@@ -27,6 +26,6 @@ class ReviewsController < ApplicationController
 private
 
     def review_params
-        params.require(:review).permit(:comment, :rating, :product_id, :key)
+        params.require(:review).permit(:comment, :rating, :product_id)
     end
 end
