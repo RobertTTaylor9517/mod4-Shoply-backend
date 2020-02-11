@@ -11,8 +11,10 @@ class UsersController < ApplicationController
     end
 
     def show
-        user_id = JsonWebToken.decode(params[:key])
-        puts(user_id)
+        user_auth = JsonWebToken.decode(params[:key])
+        puts(user_auth["user_id"])
+        user = User.find_by(id: user_auth["user_id"])
+        render json: user.to_json(include: [:lists, :reviews])
     end
 
 private

@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get '/products/:id', to: 'products#show'
   get '/category/:category', to: 'products#category'
   get '/reviews/:product_id', to: 'reviews#index'
+  get '/user', to: 'users#show'
+  post '/reviews/new', to: 'reviews#create'
 end
