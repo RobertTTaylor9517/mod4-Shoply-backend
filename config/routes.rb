@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get '/reviews/:product_id', to: 'reviews#index'
   get '/user', to: 'users#show'
   post '/reviews/new', to: 'reviews#create'
+  post '/purchase', to: 'users#purchase'
 end

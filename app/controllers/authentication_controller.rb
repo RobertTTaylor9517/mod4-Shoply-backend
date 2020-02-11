@@ -6,7 +6,7 @@ class AuthenticationController < ApplicationController
         command = AuthenticateUser.call(params[:username], params[:password])
 
         if command.success?
-            render json: {auth_token: command.result}
+            render json: {auth_token: command.result, wallet: current_user.wallet}
         else
             render json: {error: 'Inavlid Login'}
         end
