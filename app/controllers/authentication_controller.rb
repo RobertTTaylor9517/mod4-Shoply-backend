@@ -7,6 +7,8 @@ class AuthenticationController < ApplicationController
 
         if command.success?
             render json: {auth_token: command.result}
+        else
+            render json: {error: 'Inavlid Login'}
         end
     end
 end
