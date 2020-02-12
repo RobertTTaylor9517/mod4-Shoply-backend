@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         if user.save!
             token = JsonWebToken.encode(user_id: user.id)
             puts(token)
-            render json: {token: token, wallet: user.wallet}
+            render json: {auth_token: token, wallet: user.wallet}
         end
     end
 
@@ -42,6 +42,7 @@ class UsersController < ApplicationController
                 render json: {error: user.errors.full_messages}
             end
         end
+
     end
 
     def update

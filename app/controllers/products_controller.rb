@@ -6,14 +6,14 @@ class ProductsController < ApplicationController
         Product.all.each do |prod|
             rates_total = 0
             prod.reviews.each do |rev|
-                rates_total += rev.rating
+                rates_total = rates_total + rev.rating
             end
             if rates_total = 0
                 prod['rating'] = rates_total
             else
                 prod['rating'] = (rates_total / prod.reviews.count).round
             end
-            
+
             products << prod
         end
  
@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
     end
 
     def search
-        products = Product.where("name LIKE ?", "%#{params[:search]}%")
+        products = Product.where("name LIKE ?", "%" + params[:search] + "%")
         render json: products
     end
 
