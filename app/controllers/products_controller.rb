@@ -2,7 +2,21 @@ class ProductsController < ApplicationController
     skip_before_action :authenticate_request, only: [:index, :show, :category, :search]
 
     def index
-        products = Product.all 
+        products = []
+        Product.all.each do |prod|
+            rates_total = 0
+            prod.reviews.each do |rev|
+                rates_total += rev.rating
+            end
+            if rates_total = 0
+                prod['rating'] = rates_total
+            else
+                prod['rating'] = (rates_total / prod.reviews.count).round
+            end
+            
+            products << prod
+        end
+ 
         render json: products
     end
 

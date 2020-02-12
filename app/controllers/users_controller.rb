@@ -18,6 +18,9 @@ class UsersController < ApplicationController
             include: {
                 user: {
                     only: [:username]
+                },
+                product: {
+                    only: [:id, :name]
                 }
             }
         }])

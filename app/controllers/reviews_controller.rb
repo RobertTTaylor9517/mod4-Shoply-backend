@@ -2,11 +2,7 @@ class ReviewsController < ApplicationController
     skip_before_action :authenticate_request, only: [:index]
     def index
         reviews = Review.where(product_id: params[:product_id])
-        render json: reviews.to_json(include: {
-            user: {
-                only: [:username]
-            }
-        })
+        render json: reviews.to_json(include: [:user, :product])
     end
 
     def create
@@ -18,6 +14,9 @@ class ReviewsController < ApplicationController
             render json: review.to_json(include: {
                 user: {
                     only: [:username]
+                },
+                product: {
+                    only: [:id, :name]
                 }
             })
         end
