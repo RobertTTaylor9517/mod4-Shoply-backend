@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get '/user', to: 'users#show'
   post '/reviews/new', to: 'reviews#create'
   post '/purchase', to: 'users#purchase'
+  post '/search', to: 'products#search'
+  delete '/reviews/:id', to: 'reviews#delete'
 end

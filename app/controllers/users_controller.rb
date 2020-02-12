@@ -14,7 +14,13 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by(id: current_user.id)
-        render json: user.to_json(include: [:lists, :reviews])
+        render json: user.to_json(include: [:lists, reviews: {
+            include: {
+                user: {
+                    only: [:username]
+                }
+            }
+        }])
     end
 
     def purchase

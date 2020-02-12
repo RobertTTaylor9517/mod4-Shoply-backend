@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-    skip_before_action :authenticate_request, only: [:index, :show, :category]
+    skip_before_action :authenticate_request, only: [:index, :show, :category, :search]
 
     def index
         products = Product.all 
@@ -38,6 +38,11 @@ class ProductsController < ApplicationController
         else
             products = Product.where(category: params[:category])
         end
+        render json: products
+    end
+
+    def search
+        products = Product.where("name LIKE ?", "%#{params[:search]}%")
         render json: products
     end
 

@@ -23,6 +23,19 @@ class ReviewsController < ApplicationController
         end
     end
 
+    def delete
+        review = Review.find_by(id: params[:id])
+
+        review.destroy
+        render json: current_user.to_json(include: [:lists, reviews: {
+            include: {
+                user: {
+                    only: [:username]
+                }
+            }
+        }])
+    end
+
 private
 
     def review_params
