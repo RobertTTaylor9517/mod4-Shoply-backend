@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   post '/purchase', to: 'users#purchase'
   post '/search', to: 'products#search'
   delete '/reviews/:id', to: 'reviews#delete'
+  patch '/user/:id', to: 'users#update'
+  delete '/user/:id', to: 'users#delete'
 end

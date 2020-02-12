@@ -41,6 +41,33 @@ class UsersController < ApplicationController
         end
     end
 
+    def update
+        user = User.find_by(id: params[:id])
+
+        if user.update(user_params)
+            render json: user.to_json(include: [:lists, reviews: {
+                include: {
+                    user: {
+                        only: [:username]
+                    }
+                }
+            }])
+        else
+            render json: {error: user.errors.full_messages}
+        end
+    end
+
+    def delete
+        user = User.find_by(id: params[:id])
+
+        if user.destroy
+            render json: {message: 'Delete Successful'}
+        else
+            render json: {message: 'Delete Not Successful'}
+        end
+
+    end
+
 private
 
     def user_params
