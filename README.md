@@ -1,24 +1,13 @@
-# README
+### SHOPLY
+This is a project I did for MOD4 of Flatiron School.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This website is basically a quick markup of Amazon or another E-Commerce site. You can make an account by hitting the signup button. When you sign up you have to set your wallet amount for the time being. similar to a giftcard.
 
-Things you may want to cover:
+* Ruby Version: 2.6.1
+* Rails: 6.0
+* Postgres for database
+* Uses JWT for security
 
-* Ruby version
+Once you're signed up it works like a normal e-commerce website. Hosted at https://shoply-frontend.herokuapp.com/
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Backend Located at https://github.com/RobertTTaylor9517/mod4-Shoply-backend
